@@ -20,22 +20,20 @@
 // Use your function to create a card for each of the articles and add the card to the DOM.
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then(response => {
+    console.log (response)
     const dataItem = response.data.articles
     const jscript = dataItem.javascript
     const bstrap = dataItem.bootstrap
     const tech = dataItem.technology
     const jquer = dataItem.jquery
     const node = dataItem.node
-    console.log (response)
-
-   jscript.forEach(item => gitCard(item))
-   bstrap.forEach(item => gitCard(item))
-   tech.forEach(item => gitCard(item))
-   jquer.forEach(item => gitCard(item))
-   node.forEach(item => gitCard(item))
-
+    
+    jscript.forEach(item => gitCard(item))
+    bstrap.forEach(item => gitCard(item))
+    tech.forEach(item => gitCard(item))
+    jquer.forEach(item => gitCard(item))
+    node.forEach(item => gitCard(item))
   })
-
 
   .catch(err => {
     alert(err);
@@ -65,9 +63,9 @@ const gitCard = (dataItem) =>{
 
    
   
-     img.src = dataItem.authorPhoto;
+    img.src = dataItem.authorPhoto;
     headline.textContent = dataItem.headline;
-    author.textContent = dataItem.authorName;
+    authName.textContent = dataItem.authorName;
   
   
     return card
