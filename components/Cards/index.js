@@ -18,3 +18,57 @@
 // </div>
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+  .then(response => {
+    console.log (response)
+    const dataItem = response.data.articles
+    const jscript = dataItem.javascript
+    const bstrap = dataItem.bootstrap
+    const tech = dataItem.technology
+    const jquer = dataItem.jquery
+    const node = dataItem.node
+    
+    jscript.forEach(item => gitCard(item))
+    bstrap.forEach(item => gitCard(item))
+    tech.forEach(item => gitCard(item))
+    jquer.forEach(item => gitCard(item))
+    node.forEach(item => gitCard(item))
+  })
+
+  .catch(err => {
+    alert(err);
+  })
+
+const gitCard = (dataItem) =>{
+    const card = document.createElement('div');
+    const headline = document.createElement('div');
+    const author = document.createElement('div');
+    const imgCont = document.createElement('div');
+    const img = document.createElement('img');
+    const authName = document.createElement('span');
+    
+  
+    card.classList.add('card');
+    headline.classList.add('headline');
+    author.classList.add('author');
+    imgCont.classList.add('img-container');
+  
+    card.appendChild(headline);
+    card.appendChild(author);
+    author.appendChild(imgCont);
+    imgCont.appendChild(img);
+    author.appendChild(authName);
+    const cardCont = document.querySelector('.cards-container')
+    cardCont.appendChild(card)
+
+   
+  
+    img.src = dataItem.authorPhoto;
+    headline.textContent = dataItem.headline;
+    authName.textContent = dataItem.authorName;
+  
+  
+    return card
+  }
+  
+ 
